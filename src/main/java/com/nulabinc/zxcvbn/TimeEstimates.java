@@ -1,6 +1,9 @@
 package com.nulabinc.zxcvbn;
 
+import static java.math.RoundingMode.HALF_DOWN;
+
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class TimeEstimates {
 
@@ -52,10 +55,10 @@ public class TimeEstimates {
         }
         return text;
     }
-
+    
     private static double divide(double dividend, double divisor) {
         BigDecimal dividendDecimal = new BigDecimal(dividend);
         BigDecimal divisorDecimal = new BigDecimal(divisor);
-        return dividendDecimal.divide(divisorDecimal, BigDecimal.ROUND_HALF_DOWN).doubleValue();
+        return dividendDecimal.divide(divisorDecimal, RoundingMode.HALF_DOWN).doubleValue();
     }
 }

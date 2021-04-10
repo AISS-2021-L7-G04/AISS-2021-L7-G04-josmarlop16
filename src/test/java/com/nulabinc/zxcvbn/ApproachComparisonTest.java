@@ -1,13 +1,14 @@
 package com.nulabinc.zxcvbn;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -15,8 +16,9 @@ import java.util.*;
 
 
 import static java.nio.CharBuffer.wrap;
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 
 /**
  * These tests compare the output from different approaches for calculating password strength.
@@ -29,6 +31,7 @@ import static junit.framework.TestCase.assertNotNull;
  * The list of password to do the comparisons with is loaded from passwords.txt in the test/resources
  * folder.
  */
+
 @RunWith(Parameterized.class)
 public class ApproachComparisonTest {
 
@@ -211,17 +214,15 @@ public class ApproachComparisonTest {
     }
 
     public static ScriptEngine initScriptEngine() {
-        ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("JavaScript");
-
+    	ScriptEngineManager manager = new ScriptEngineManager();
+    	ScriptEngine mengine = manager.getEngineByName("JavaScript");
         try {
             //using the 4.4.1 release
             URL script = JavaPortTest.class.getClassLoader().getResource("zxcvbn.js");
-            engine.eval(new FileReader(new File(script.toURI())));
+            mengine.eval(new FileReader(new File(script.toURI())));
         } catch (URISyntaxException | FileNotFoundException | ScriptException e) {
             throw new RuntimeException("Cannot instantiate Javascript Engine", e);
         }
-
         return engine;
     }
 
