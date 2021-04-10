@@ -1,0 +1,10 @@
+In console execute:
+Brew install gradle or in any case, install gradle from Gradle web
+Brew install maven or in any case, install maven from Maven web
+Check both versions using:
+	gradle --version or gradle -v
+	maven -version
+Then
+Git clone https://github.com/nulab/zxcvbn4j.git
+Cd zxcvbn4j or cd * if the folder is empty
+./gradlew build or gradle build 
